@@ -1,12 +1,13 @@
 package com.example.productthymeleaf.config;
 
-import com.example.productthymeleaf.service.ICRUDService;
-import com.example.productthymeleaf.service.ProductService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -16,13 +17,10 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
-import java.io.IOException;
-
 @Configuration //annotation đánh dấu đây là file config
 @EnableWebMvc //annotatino cho phép sử dụng các thành phần của SpringMVC
 @ComponentScan(basePackages = "com.example.productthymeleaf")
 @PropertySource("classpath:upload.properties")
-//annotation cho phép chỉ định tài nguyên tĩnh của dự án
 public class AppConfiguration implements WebMvcConfigurer, ApplicationContextAware {
     private ApplicationContext applicationContext;
 
@@ -59,11 +57,6 @@ public class AppConfiguration implements WebMvcConfigurer, ApplicationContextAwa
         viewResolver.setTemplateEngine(templateEngine());
         viewResolver.setCharacterEncoding("UTF-8");
         return viewResolver;
-    }
-
-    @Bean
-    public ICRUDService productService() {
-        return new ProductService();
     }
 
     @Override

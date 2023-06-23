@@ -2,7 +2,9 @@ package com.example.productthymeleaf.model;
 
 import org.springframework.web.multipart.MultipartFile;
 
+
 public class Product {
+
     private Long id;
     private String name;
     private Double price;
@@ -21,6 +23,14 @@ public class Product {
         this.quantity = quantity;
         this.image = image;
         this.file = file;
+    }
+
+    public Product(Long id, String name, Double price, Integer quantity, String image) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.image = image;
     }
 
     public Long getId() {

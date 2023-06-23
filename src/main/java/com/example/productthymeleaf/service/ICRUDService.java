@@ -5,6 +5,7 @@ import com.example.productthymeleaf.model.Product;
 import java.util.List;
 
 public interface ICRUDService {
+
     List<Product> findAll();
 
     Product findById(Long id);

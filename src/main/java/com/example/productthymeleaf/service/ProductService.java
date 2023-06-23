@@ -1,15 +1,19 @@
 package com.example.productthymeleaf.service;
 
 import com.example.productthymeleaf.model.Product;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ProductService implements ICRUDService{
+
     private final List<Product> products;
 
     public ProductService() {
         products = new ArrayList<>();
+        products.add(new Product(1L, "abc", 100D, 100, ""))
     }
 
     @Override
@@ -19,9 +23,9 @@ public class ProductService implements ICRUDService{
 
     @Override
     public Product findById(Long id) {
-        for (Product product : products) {
-            if (product.getId().equals(id)) {
-                return product;
+        for (Product p : products) {
+            if (p.getId().equals(id)) {
+                return p;
             }
         }
         return null;
@@ -34,13 +38,14 @@ public class ProductService implements ICRUDService{
 
     @Override
     public void update(Product product) {
-        Product p = findById(product.getId());
-        int index = products.indexOf(p);
+        Product productUpdate = findById(product.getId());
+        int index = products.indexOf(productUpdate);
         products.set(index, product);
     }
 
     @Override
     public void delete(Long id) {
-        products.remove(findById(id));
+        Product productDelete = findById(id);
+        products.remove(productDelete);
     }
 }
